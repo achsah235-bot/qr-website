@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Answer Reveal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    p {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1 id="title">Scan a QR Code</h1>
+    <p id="answer">Your answer will appear here.</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get("q");
+
+    const answers = {
+      fear: {
+        title: "Trigger: Fear",
+        text: "Goosebumps appear when your body senses danger and activates a survival response."
+      },
+      cold: {
+        title: "Trigger: Cold",
+        text: "Cold temperatures cause tiny muscles to contract, raising hair to trap warmth."
+      },
+      music: {
+        title: "Trigger: Music",
+        text: "Emotionally powerful music can stimulate the nervous system, creating goosebumps."
+      }
+    };
+
+    if (q && answers[q]) {
+      document.getElementById("title").innerText = answers[q].title;
+      document.getElementById("answer").innerText = answers[q].text;
+    } else {
+      document.getElementById("title").innerText = "No Answer Found";
+      document.getElementById("answer").innerText = "Scan a valid QR code to reveal the answer.";
+    }
+  </script>
+
+</body>
+</html>
